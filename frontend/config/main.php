@@ -8,7 +8,7 @@ $params = array_merge(
 
 return [
     'name' => 'My Way',
-    'language' => 'en',
+    'language' => 'ru',
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
@@ -17,6 +17,7 @@ return [
         'request' => [
             'csrfParam' => '_csrf-frontend',
             'baseUrl' => '',
+            'enableCsrfValidation' => true,
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -31,6 +32,7 @@ return [
 //                    'sourceLanguage' => 'en',
                     'fileMap' => [
                         'app' => 'app.php',
+                        'app-menu' => 'app-menu.php',
                     ],
                 ],
             ],

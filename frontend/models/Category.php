@@ -45,10 +45,21 @@ class Category extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'parent' => 'Parent',
-            'order' => 'Order',
+            'name' => Yii::t('app-form','Name'),
+            'parent' => Yii::t('app-form','Parent category'),
+            'order' => Yii::t('app-form','Order'),
         ];
+    }
+
+    /**
+     * @return array options for dropDownList properties Orders
+     */
+    public static function getOrdersOpts(){
+        $res = null;
+        for($i = 10; $i > 0; $i--){
+            $res[$i] = $i;
+        }
+        return $res;
     }
 
     /**

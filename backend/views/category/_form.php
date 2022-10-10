@@ -2,10 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use frontend\models\Category;
+use backend\models\Category;
 
 /** @var yii\web\View $this */
-/** @var frontend\models\Category $model */
+/** @var backend\models\Category $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
@@ -19,12 +19,13 @@ use frontend\models\Category;
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'parent')->dropDownList(
-        Category::find()->select(['name', 'id'])->indexBy('id')->column(),
+//        Category::find()->select(['name', 'id'])->indexBy('id')->column(),
+        Category::getAllCategories(),
         ['prompt' => ['text' => Yii::t('app-form', 'Select parent'), 'options' => ['value' => 0]]]
     ) ?>
 
     <?= $form->field($model, 'order')->dropDownList(
-        \frontend\models\Category::getOrdersOpts()
+        \backend\models\Category::getOrdersOpts()
     ) ?>
 
     <div class="form-group">

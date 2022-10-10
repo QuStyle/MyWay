@@ -1,17 +1,17 @@
 <?php
 
-namespace frontend\controllers;
+namespace backend\controllers;
 
-use frontend\models\Expenses;
-use frontend\models\ExpensesSearch;
+use backend\models\Category;
+use backend\models\CategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ExpensesController implements the CRUD actions for Expenses model.
+ * CategoryController implements the CRUD actions for Category model.
  */
-class ExpensesController extends Controller
+class CategoryController extends Controller
 {
     /**
      * @inheritDoc
@@ -22,7 +22,7 @@ class ExpensesController extends Controller
             parent::behaviors(),
             [
                 'verbs' => [
-                    'class' => VerbFilter::className(),
+                    'class' => VerbFilter::class,
                     'actions' => [
                         'delete' => ['POST'],
                     ],
@@ -32,13 +32,13 @@ class ExpensesController extends Controller
     }
 
     /**
-     * Lists all Expenses models.
+     * Lists all Category models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new ExpensesSearch();
+        $searchModel = new CategorySearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -48,7 +48,7 @@ class ExpensesController extends Controller
     }
 
     /**
-     * Displays a single Expenses model.
+     * Displays a single Category model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -61,17 +61,17 @@ class ExpensesController extends Controller
     }
 
     /**
-     * Creates a new Expenses model.
+     * Creates a new Category model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Expenses();
+        $model = new Category();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['create', 'id' => $model->id]);
             }
         } else {
             $model->loadDefaultValues();
@@ -83,7 +83,7 @@ class ExpensesController extends Controller
     }
 
     /**
-     * Updates an existing Expenses model.
+     * Updates an existing Category model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -103,7 +103,7 @@ class ExpensesController extends Controller
     }
 
     /**
-     * Deletes an existing Expenses model.
+     * Deletes an existing Category model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -117,15 +117,15 @@ class ExpensesController extends Controller
     }
 
     /**
-     * Finds the Expenses model based on its primary key value.
+     * Finds the Category model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Expenses the loaded model
+     * @return Category the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Expenses::findOne(['id' => $id])) !== null) {
+        if (($model = Category::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

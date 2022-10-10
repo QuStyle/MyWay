@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\models;
+namespace backend\models;
 
 use Yii;
 use yii\db\ActiveRecord;
@@ -59,6 +59,16 @@ class Category extends ActiveRecord
         for($i = 10; $i > 0; $i--){
             $res[$i] = $i;
         }
+        return $res;
+    }
+
+    public static function getAllCategories(){
+        $categories = Yii::$app->db->createCommand('SELECT * FROM category WHERE parent = 0')->queryAll();
+        $res = [];
+        foreach ($categories as $value) {
+            $res[$value['id']] = $value['name'];
+        }
+//        dump($res);die;
         return $res;
     }
 
